@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Collections
 {
@@ -7,9 +8,40 @@ namespace Collections
     {
         static void Main(string[] args)
         {
-            var arrayOfObjects = new object[5];
-            var studentsWithBlackHair = new List<string> {"Nathan", "Austin", "Marty Mcfly"};//collection intializer beacause you are doing collection
+            //var arrayOfObjects = new object[5];
+            var studentsWithBlackHair = new List<string> { "Pathan Monzales", "Austin Smith", "Marty Mcfly" };//collection intializer beacause you are doing collection
 
+            var studentsWithBlackHairAndP = studentsWithBlackHair
+                .Where(name => name.StartsWith("P"))
+                .Select(name =>
+                    new { FirstName = name.Split(" ")[0],       //anonymous Type check in class repo for other way to do it with writing method.
+                        LastName = name.Split(" ")[1]
+                    });
+
+            if (studentsWithBlackHairAndP.All(student => student.FirstName.StartsWith("M")))
+            {
+                Console.WriteLine("Not getting un here");
+            }
+
+            //  studentsWithBlackHairAndP.Average(student => student.FirstName.Length);
+            var groupedStudentsNames = studentsWithBlackHair.GroupBy(name => name.First());
+
+            //foreach (var groupOfStudentNames in groupedStudentNames)
+            //{
+            //    // groupOfStudents.Key
+            //    var key = groupOfStudentNames.Key;
+            //    var numberOfPeople = groupOfStudentNames.Count();
+            //    foreach (var name in groupOfStudentNames)
+            //    {
+            //        Console.WriteLine($"{ name} starts with {key}");
+            //    }
+            //}
+
+            foreach (var student in studentsWithBlackHairAndP)
+            {
+                Console.WriteLine($"{student.FirstName} {student.LastName} HashCode a 'P' in it");
+            }
+           
             studentsWithBlackHair.Add("Robert");
             var studentsByHairColor = new Dictionary<string, List<string>>
             {
@@ -41,5 +73,6 @@ namespace Collections
             }
             Console.ReadLine();
         }
+
     }
 }
