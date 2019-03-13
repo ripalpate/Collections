@@ -10,6 +10,7 @@ namespace Collections
             var arrayOfObjects = new object[5];
             var studentsWithBlackHair = new List<string> {"Nathan", "Austin", "Marty Mcfly"};//collection intializer beacause you are doing collection
 
+            studentsWithBlackHair.Add("Robert");
             var studentsByHairColor = new Dictionary<string, List<string>>
             {
                 { "Black", studentsWithBlackHair }
@@ -24,9 +25,9 @@ namespace Collections
                 Console.WriteLine("They are the same");
             }
 
-            studentsByHairColor["Black"] = new List<string>();
+            //studentsByHairColor["Black"] = new List<string>();
 
-            studentsByHairColor["Black"].Add("Welly");
+            //studentsByHairColor["Black"].Add("Welly");
             //kvp is key value pair. when you want to destructure use it(key, value) so its not wrapped around. and can access key and value. hairColor is key and students are value
             foreach (var (hairColor, students) in studentsByHairColor)
             {
